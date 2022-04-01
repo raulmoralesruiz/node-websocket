@@ -34,16 +34,14 @@ class Server {
 
   sockets() {
     this.io.on("connection", (socket) => {
-      console.log("Nuevo usuario conectado", socket.id);
+      // console.log("Nuevo usuario conectado", socket.id);
 
       socket.on("disconnect", () => {
         console.log("Usuario desconectado", socket.id);
       });
 
-      socket.on("enviar-mensaje", (data) => {
-        console.log("Mensaje recibido:", data);
-
-        this.io.emit("enviar-mensaje", data);
+      socket.on("enviar-mensaje", (payload) => {
+        this.io.emit("enviar-mensaje", payload);
       });
     });
   }
