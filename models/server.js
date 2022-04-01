@@ -39,6 +39,12 @@ class Server {
       socket.on("disconnect", () => {
         console.log("Usuario desconectado", socket.id);
       });
+
+      socket.on("enviar-mensaje", (data) => {
+        console.log("Mensaje recibido:", data);
+
+        this.io.emit("enviar-mensaje", data);
+      });
     });
   }
 
